@@ -19,10 +19,18 @@
 .formTitleWrapper {
   background-color: #20232a;
 }
-.form {
+.formControls {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 12px;
+}
+.formControls button {
+  padding: 5px;
+  margin: 0 5px;
+  background-color: #FFF;
+  border: 1px black solid;
+  border-radius: 0%;
+  filter: drop-shadow(1px 1px 1px #000);
 }

@@ -51,7 +51,7 @@ class ScoreForm extends React.Component {
           <div className={styles.formTitleWrapper}>
             <h4>Add Your Highscore!</h4>
           </div>
-          <div className={styles.form}>
+          <div className={styles.formControls}>
             <label>Name:</label><br/>
             <input
               type="text"
