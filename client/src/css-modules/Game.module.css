@@ -1,0 +1,64 @@
+.container {
+  padding-top: 30vmin;
+  padding-bottom: 15vh;
+  text-align: center;
+}
+.gameHeader {
+  text-align: center;
+}
+.gameWrapper {
+  display: inline-block;
+}
+.gameNavWrapper {
+  width: 300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+}
+.gameNavWrapper button {
+  margin: 0;
+  color: #a19e9b;
+  border: 1px black solid;
+}
+.gameNavWrapper button:last-child {
+  border-left: none;
+}
+.active {
+  color: black !important;
+  background-color: #64e0ff;
+}
+p {
+  padding: 0 10px;
+}
+i {
+  padding: 0 5px;
+}
+.gameHeader p {
+  display: inline-block;
+  margin-right: 5px;
+}
+.gameControls {
+  padding-top: 10px;
+  text-align: center;
+}
+button {
+  padding: 5px;
+  margin: 0 5px;
+  background-color: #FFF;
+  border: 1px black solid;
+  border-radius: 0%;
+  filter: drop-shadow(1px 1px 1px #000);
+}
+.easyButton {
+  color: green;
+  border: 1px green solid !important;
+}
+.mediumButton {
+  color: blue;
+  border: 1px blue solid !important;
+}
+.hardButton {
+  color: red;
+  border: 1px red solid !important;
+}
