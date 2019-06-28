@@ -1,10 +1,16 @@
+// React
 import React from 'react';
 import propTypes from 'prop-types';
+
+// Redux
 import { connect } from 'react-redux';
 
+// Actions
 import {
   fetchEasyHighscores, fetchMediumHighscores, fetchHardHighscores
 } from '../actions/highscoreActions';
+
+// CSS
 import styles from '../css-modules/HighScoreChart.module.css';
 
 class HighScoreChart extends React.Component {
@@ -27,9 +33,9 @@ class HighScoreChart extends React.Component {
     return (
       <div className={styles.chartWrapper} style={{display: this.props.showGame && 'none'}}>
         <div className={styles.chart}>
-          <h3>Easy</h3>
+          <h3>Hard</h3>
           <ol>
-            {easyHighscores}
+            {hardHighscores}
           </ol>
         </div>
         <div className="clear"/>
@@ -41,9 +47,9 @@ class HighScoreChart extends React.Component {
         </div>
         <div className="clear"/>
         <div className={styles.chart}>
-          <h3>Hard</h3>
+          <h3>Easy</h3>
           <ol>
-            {hardHighscores}
+            {easyHighscores}
           </ol>
         </div>
       </div>
