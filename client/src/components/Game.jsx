@@ -72,7 +72,8 @@ class Game extends React.Component {
 
     // Check if bomb was clicked
     if (cellClicked.value === 'b') {
-      alert('Uh oh, you clicked a bomb. Try a new game');
+      alert('Uh oh, you clicked a bomb. Try again');
+      this.handleNewGame();
     }
 
     // Clicked empty cell
