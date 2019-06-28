@@ -2,6 +2,7 @@
 import React from 'react';
 
 // Components
+import Instructions from './Instructions.jsx';
 import Board from './Board.jsx';
 import HighScoreChart from './HighScoreChart.jsx';
 import ScoreForm from './ScoreForm.jsx';
@@ -155,6 +156,7 @@ class Game extends React.Component {
 
     return (
       <div>
+        <Instructions />
         <div className={styles.container} style={{pointerEvents: this.props.highscores.showForm && 'none'}}>
           <div className={styles.gameNavWrapper}>
             <button onClick={this.handleShowGame} className={this.props.game.showGame ? styles.active : undefined}>Minesweeper</button>
