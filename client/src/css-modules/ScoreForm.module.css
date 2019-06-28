@@ -12,6 +12,7 @@
 }
 .formWrapper h4 {
   color: white;
+  padding-left: 20px;
 }
 .formWrapper form {
   display: grid;
