@@ -5,7 +5,6 @@ export const FLAG_CELL = "FLAG_CELL";
 export const UNFLAG_CELL = "UNFLAG_CELL";
 export const INCREMENT_TIME = "INCREMENT_TIME";
 export const START_CLOCK = "START_CLOCK";
-export const RESTART_BOARD = "RESTART_BOARD";
 export const CHANGE_TO_EASY = "CHANGE_TO_EASY";
 export const CHANGE_TO_MEDIUM = "CHANGE_TO_MEDIUM";
 export const CHANGE_TO_HARD = "CHANGE_TO_HARD";

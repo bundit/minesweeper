@@ -1,3 +1,4 @@
+// React
 import React from 'react';
 
 // Components
@@ -9,7 +10,7 @@ import ScoreForm from './ScoreForm.jsx';
 import { connect } from 'react-redux';
 import {
   CONFIGURE_NEW_BOARD, INCREMENT_TIME, START_CLOCK,
-  REVEAL_CELL, FLAG_CELL, UNFLAG_CELL, RESTART_BOARD,
+  REVEAL_CELL, FLAG_CELL, UNFLAG_CELL,
   CHANGE_TO_EASY, CHANGE_TO_MEDIUM, CHANGE_TO_HARD,
   TOGGLE_SHOW_GAME, TOGGLE_SHOW_FORM, SAVE_TIMESTAMP
 } from '../actions/types';
@@ -32,7 +33,6 @@ class Game extends React.Component {
     this.handleHardMode = this.handleHardMode.bind(this);
 
     // Game handlers
-    this.handleRestart = this.handleRestart.bind(this);
     this.handleNewGame = this.handleNewGame.bind(this);
 
     this.handleShowCharts = this.handleShowCharts.bind(this);
@@ -99,10 +99,6 @@ class Game extends React.Component {
     }
   }
 
-  // Clear the board
-  handleRestart() {
-    this.props.dispatch({type: RESTART_BOARD});
-  }
   // Create a whole new board
   handleNewGame() {
     this.props.dispatch({type: CONFIGURE_NEW_BOARD});
@@ -191,7 +187,6 @@ class Game extends React.Component {
             > Hard </button>
           </div>
           <div className={styles.gameControls}>
-            <button onClick={this.handleRestart}> Restart </button>
             <button onClick={this.handleNewGame}> New Game </button>
           </div>
         </div>

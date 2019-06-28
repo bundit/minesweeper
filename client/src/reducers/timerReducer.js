@@ -1,5 +1,5 @@
 // Import actions
-import { CONFIGURE_NEW_BOARD, START_CLOCK, INCREMENT_TIME, RESTART_BOARD } from '../actions/types';
+import { CONFIGURE_NEW_BOARD, START_CLOCK, INCREMENT_TIME } from '../actions/types';
 
 const initialState = {
   hasStarted: false,
@@ -22,8 +22,6 @@ function timerReducer(state = initialState, action) {
         ...state,
         seconds: state.seconds + 1
       } : state;
-    case RESTART_BOARD:
-      return {...initialState}
     default:
       return state;
   }

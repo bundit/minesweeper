@@ -1,7 +1,7 @@
 // Actions
 import {
   CONFIGURE_NEW_BOARD, TOGGLE_SHOW_GAME,
-  REVEAL_CELL, FLAG_CELL, UNFLAG_CELL, RESTART_BOARD,
+  REVEAL_CELL, FLAG_CELL, UNFLAG_CELL,
   CHANGE_TO_EASY, CHANGE_TO_MEDIUM, CHANGE_TO_HARD
 } from '../actions/types'
 // Game Constants
@@ -44,9 +44,6 @@ export default function(state = initialState, action) {
     // Unflag a cell
     case UNFLAG_CELL:
       return unflagCell(state, action);
-    // Restart board with the same cells
-    case RESTART_BOARD:
-      return restartBoard(state, action);
     // Change to easy mode
     case CHANGE_TO_EASY:
       return changeToEasy(state, action);
