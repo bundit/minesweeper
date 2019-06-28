@@ -154,44 +154,46 @@ class Game extends React.Component {
       timeDisplay = seconds;
 
     return (
-      <div className={styles.container}>
-        <div className={styles.gameNavWrapper}>
-          <button onClick={this.handleShowGame} className={this.props.game.showGame ? styles.active : undefined}>Minesweeper</button>
-          <button onClick={this.handleShowCharts} className={!this.props.game.showGame ? styles.active : undefined}>High Scores</button>
+      <div>
+        <div className={styles.container} style={{pointerEvents: this.props.highscores.showForm && 'none'}}>
+          <div className={styles.gameNavWrapper}>
+            <button onClick={this.handleShowGame} className={this.props.game.showGame ? styles.active : undefined}>Minesweeper</button>
+            <button onClick={this.handleShowCharts} className={!this.props.game.showGame ? styles.active : undefined}>High Scores</button>
+          </div>
+          <div className={styles.gameWrapper} style={{display: !this.props.game.showGame ? 'none' : undefined}}>
+            <div className={styles.gameHeader}>
+              <p><i className="fa fa-bomb"/>{this.props.game.numFlagsLeft}</p>
+              <p><i className="fa fa-clock-o"/>{timeDisplay}</p>
+            </div>
+            <div>
+              <Board
+                rows={this.props.game.rows}
+                columns={this.props.game.columns}
+                board={this.props.game.board}
+                handleClick={this.handleClick}
+                handleFlag={this.handleFlag}
+              />
+            </div>
+            <div className={styles.gameControls}>
+              <button
+                onClick={this.handleEasyMode}
+                className={styles.easyButton}
+              > Easy </button>
+              <button
+                onClick={this.handleMediumMode}
+                className={styles.mediumButton}
+              > Medium </button>
+              <button
+                onClick={this.handleHardMode}
+                className={styles.hardButton}
+              > Hard </button>
+            </div>
+            <div className={styles.gameControls}>
+              <button onClick={this.handleNewGame}> New Game </button>
+            </div>
+          </div>
+          <HighScoreChart />
         </div>
-        <div className={styles.gameWrapper} style={{display: !this.props.game.showGame ? 'none' : undefined}}>
-          <div className={styles.gameHeader}>
-            <p><i className="fa fa-bomb"/>{this.props.game.numFlagsLeft}</p>
-            <p><i className="fa fa-clock-o"/>{timeDisplay}</p>
-          </div>
-          <div>
-            <Board
-              rows={this.props.game.rows}
-              columns={this.props.game.columns}
-              board={this.props.game.board}
-              handleClick={this.handleClick}
-              handleFlag={this.handleFlag}
-            />
-          </div>
-          <div className={styles.gameControls}>
-            <button
-              onClick={this.handleEasyMode}
-              className={styles.easyButton}
-            > Easy </button>
-            <button
-              onClick={this.handleMediumMode}
-              className={styles.mediumButton}
-            > Medium </button>
-            <button
-              onClick={this.handleHardMode}
-              className={styles.hardButton}
-            > Hard </button>
-          </div>
-          <div className={styles.gameControls}>
-            <button onClick={this.handleNewGame}> New Game </button>
-          </div>
-        </div>
-        <HighScoreChart />
         <ScoreForm showForm={this.props.highscores.showForm} time={this.props.highscores.timestamp} mode={this.props.highscores.gameMode} />
       </div>
     );
