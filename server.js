@@ -1,11 +1,20 @@
+// Modules
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const http = require('http');
 
+// Routes
 const highscores = require('./routes/api/highscores');
 
+// Server
 const app = express();
+
+// Keep my app alive on herokuapp
+setInterval(() => {
+    http.get("http://mine--sweeper.herokuapp.com");
+}, 150000); // every 25 minutes 150k milliseconds
 
 // bodyParser
 app.use(bodyParser.json());
