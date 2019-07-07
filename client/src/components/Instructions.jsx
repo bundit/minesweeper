@@ -16,9 +16,9 @@ class Instructions extends React.Component {
         <div className={styles.instructions}>
           <div>
             <p><strong> On Desktop: </strong></p>
-            <p> <i class="fa fa-mouse-pointer"></i> Right Click to set flags</p>
+            <p> <i className="fa fa-mouse-pointer"></i> Right Click to set flags</p>
             <p><strong> On Mobile: </strong></p>
-            <p> <i class="fa fa-hand-o-up" aria-hidden="true"></i> Hold to set flags </p>
+            <p> <i className="fa fa-hand-o-up" aria-hidden="true"></i> Hold to set flags </p>
           </div>
           <div>
             <button onClick={() => this.setState({showInstructions: false})}>Ok</button>
