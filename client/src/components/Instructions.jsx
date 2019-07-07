@@ -9,7 +9,7 @@ class Instructions extends React.Component {
 
   render() {
     return (
-      <div className={this.state.showInstructions && styles.instructionsWrapper} style={{display: !this.state.showInstructions && 'none'}}>
+      <div className={this.state.showInstructions ? styles.instructionsWrapper : null} style={{display: !this.state.showInstructions && 'none'}}>
         <div className={styles.titleWrapper}>
           <h4>How To Play</h4>
         </div>
