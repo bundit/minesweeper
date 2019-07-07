@@ -30,7 +30,24 @@ export default function(state = initialState, action) {
         hard: action.payload
       }
     case ADD_HIGHSCORE:
-      return state;
+      let score = action.payload;
+      let mode;
+      // Add score to appropriate score list
+      if (score.mode === "EASY")
+        mode = 'easy';
+      else if (score.mode === "MEDIUM")
+        mode = 'medium';
+      else if (score.mode === "HARD")
+        mode = 'hard';
+
+      // Make sure the list is sorted so it will show the right top scores
+      let newScoreList = [...state[mode], score];
+      newScoreList.sort();
+
+      return {
+        ...state,
+        [mode]: newScoreList
+      }
     case TOGGLE_SHOW_FORM:
       return {
         ...state,
