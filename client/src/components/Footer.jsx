@@ -6,8 +6,8 @@ function Footer() {
     <div className={styles.footerWrapper}>
       <div className={styles.footer}>
         <p> @author: Bundit Hongmanee <br/>
-          <a href="https://bundit.io" target="_blank">@link: https://bundit.io</a><br/>
-          <a href="https://github.com/bundit/minesweeper" target="_blank">@repo: https://github.com/bundit</a>
+          <a href="https://bundit.io" target="_blank" rel="noopener noreferrer">@link: https://bundit.io</a><br/>
+          <a href="https://github.com/bundit/minesweeper" target="_blank" rel="noopener noreferrer">@repo: https://github.com/bundit</a>
         </p>
       </div>
     </div>
