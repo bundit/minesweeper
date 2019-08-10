@@ -44,8 +44,9 @@ class Game extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.game.numRevealed !== this.props.game.numRevealed)
       if (this.checkWinCondition())
-        this.handleWinCondition();
+        this.handleWin();
   }
+
   // Initialize game when Game is mounted
   componentDidMount() {
     // Initialize game board
@@ -129,7 +130,7 @@ class Game extends React.Component {
   }
   // Do something when win condition is met
   // Call to action if so
-  handleWinCondition() {
+  handleWin() {
     alert('You Won!');
     this.props.dispatch({type: TOGGLE_SHOW_FORM});
     this.props.dispatch({type: SAVE_TIMESTAMP, time: this.props.timer.seconds, mode: this.props.game.mode});
