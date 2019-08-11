@@ -1,6 +1,6 @@
 // Actions
 import {
-  CONFIGURE_NEW_BOARD, TOGGLE_SHOW_GAME,
+  NEW_GAME, CONFIGURE_NEW_BOARD, TOGGLE_SHOW_GAME,
   REVEAL_CELL, FLAG_CELL, UNFLAG_CELL,
   CHANGE_TO_EASY, CHANGE_TO_MEDIUM, CHANGE_TO_HARD
 } from '../actions/types'
@@ -29,6 +29,8 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case NEW_GAME:
+      return newGame(state, action);
     // Make a new board
     case CONFIGURE_NEW_BOARD:
       return configureNewBoard(state, action);
@@ -58,16 +60,47 @@ export default function(state = initialState, action) {
   }
 }
 
+function newGame(state, action) {
+  const emptyBoard = new Array(state.columns * state.rows);
+  for (let i = 0; i < emptyBoard.length; i++) {
+    emptyBoard[i] = {
+      index: i,
+      isRevealed: false,
+      value: 0,
+      isFlagged: false
+    };
+  }
+
+  return {
+    ...state,
+    board: emptyBoard,
+    numRevealed: 0,
+    numFlagsLeft: state.totalMines
+  };
+}
+
 // Configure a new board
 function configureNewBoard(state, action) {
   const col = state.columns;
   const row = state.rows;
   const len = col * row;
-  const newBoard = Array(col * row);
-  const totalMines = state.totalMines
+  const newBoard = new Array(col * row);
+  const totalMines = state.totalMines;
+  const indexClicked = action.indexClicked;
+  console.log("indexClicked", indexClicked);
+
+  let positionsNotAllowed = [indexClicked];
+  positionsNotAllowed.push(indexClicked-col-1);
+  positionsNotAllowed.push(indexClicked-col);
+  positionsNotAllowed.push(indexClicked-col+1);
+  positionsNotAllowed.push(indexClicked-1);
+  positionsNotAllowed.push(indexClicked+1);
+  positionsNotAllowed.push(indexClicked+col-1);
+  positionsNotAllowed.push(indexClicked+col);
+  positionsNotAllowed.push(indexClicked+col+1);
 
   // Randomize Mines
-  let mineIndices = generateRandomMines(row, col, totalMines);
+  let mineIndices = generateRandomMines(row, col, totalMines, positionsNotAllowed);
 
   // Create cells
   for (let i = 0; i < newBoard.length; i++) {
