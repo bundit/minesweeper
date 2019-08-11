@@ -10,7 +10,7 @@ import ScoreForm from './ScoreForm.jsx';
 // Redux and actions
 import { connect } from 'react-redux';
 import {
-  CONFIGURE_NEW_BOARD, INCREMENT_TIME, START_CLOCK,
+  NEW_GAME, CONFIGURE_NEW_BOARD, INCREMENT_TIME, START_CLOCK,
   REVEAL_CELL, FLAG_CELL, UNFLAG_CELL,
   CHANGE_TO_EASY, CHANGE_TO_MEDIUM, CHANGE_TO_HARD,
   TOGGLE_SHOW_GAME, TOGGLE_SHOW_FORM, SAVE_TIMESTAMP
@@ -45,32 +45,42 @@ class Game extends React.Component {
     if (prevProps.game.numRevealed !== this.props.game.numRevealed)
       if (this.checkWinCondition())
         this.handleWin();
+
   }
 
   // Initialize game when Game is mounted
   componentDidMount() {
     // Initialize game board
-    this.props.dispatch({type: CONFIGURE_NEW_BOARD});
+    this.props.dispatch({type: NEW_GAME});
 
     // Set the timer
     setInterval(() => this.props.dispatch({type: INCREMENT_TIME}), 1000);
   }
 
+  async handleFirstClick(cellIndex) {
+    this.props.dispatch({type: START_CLOCK});
+    await this.props.dispatch({type: CONFIGURE_NEW_BOARD, indexClicked: cellIndex})
+    this.emptyField(cellIndex);
+  }
+
   // Handle a click on a cell to reveal a cell
   // cellIndex - the index of the cell that was clicked
   handleClick(cellIndex) {
+    // Start the clock if first click
+    if (!this.props.timer.hasStarted) {
+      this.handleFirstClick(cellIndex);
+      return;
+    }
+
     const cellClicked = this.props.game.board[cellIndex];
 
     // Do nothing
     if (cellClicked.isRevealed || cellClicked.isFlagged) return;
 
-    // Start the clock if first click
-    if (!this.props.timer.hasStarted)
-      this.props.dispatch({type: START_CLOCK});
-
     // Click the cell if it hasn't been revealed
-    if (!cellClicked.isRevealed && !cellClicked.isFlagged)
+    if (!cellClicked.isRevealed && !cellClicked.isFlagged) {
       this.props.dispatch({type: REVEAL_CELL, index: cellIndex});
+    }
 
     // Check if bomb was clicked
     if (cellClicked.value === 'b') {
@@ -104,22 +114,22 @@ class Game extends React.Component {
 
   // Create a whole new board
   handleNewGame() {
-    this.props.dispatch({type: CONFIGURE_NEW_BOARD});
+    this.props.dispatch({type: NEW_GAME});
   }
   // Change the mode to easy if it isn't already
   handleEasyMode() {
     this.props.dispatch({type: CHANGE_TO_EASY});
-    this.props.dispatch({type: CONFIGURE_NEW_BOARD});
+    this.props.dispatch({type: NEW_GAME});
   }
   // Change the mode to mediium if it isn't already
   handleMediumMode() {
     this.props.dispatch({type: CHANGE_TO_MEDIUM});
-    this.props.dispatch({type: CONFIGURE_NEW_BOARD});
+    this.props.dispatch({type: NEW_GAME});
   }
   // Change the mode to hard if it isn't already
   handleHardMode() {
     this.props.dispatch({type: CHANGE_TO_HARD});
-    this.props.dispatch({type: CONFIGURE_NEW_BOARD});
+    this.props.dispatch({type: NEW_GAME});
   }
   // Check if the win condition has been met
   checkWinCondition() {
