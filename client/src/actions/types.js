@@ -15,3 +15,4 @@ export const DELETE_HIGHSCORE = "DELETE_HIGHSCORE";
 export const ADD_HIGHSCORE = "ADD_HIGHSCORE";
 export const TOGGLE_SHOW_FORM = "TOGGLE_SHOW_FORM";
 export const SAVE_TIMESTAMP = "SAVE_TIMESTAMP";
+export const NEW_GAME = "NEW_GAME";
