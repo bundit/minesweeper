@@ -144,6 +144,7 @@ class Game extends React.Component {
     alert('You Won!');
     this.props.dispatch({type: TOGGLE_SHOW_FORM});
     this.props.dispatch({type: SAVE_TIMESTAMP, time: this.props.timer.seconds, mode: this.props.game.mode});
+    this.props.dispatch({type: NEW_GAME});
   }
   handleShowGame() {
     if (!this.props.game.showGame)
