@@ -54,7 +54,13 @@ class Game extends React.Component {
     this.props.dispatch({type: NEW_GAME});
 
     // Set the timer
-    setInterval(() => this.props.dispatch({type: INCREMENT_TIME}), 1000);
+    this.timer = setInterval(() => this.props.dispatch({type: INCREMENT_TIME}), 1000);
+  }
+
+  // Cleanup after component is unmounted
+  componentWillUnmount() {
+    // Clear the timer
+    clearInterval(this.timer);
   }
 
   async handleFirstClick(cellIndex) {
